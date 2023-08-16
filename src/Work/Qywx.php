@@ -7,6 +7,7 @@ use ReqTencent\Work\Api\Base;
 use ReqTencent\Work\Api\Cyvi;
 use ReqTencent\Work\Api\Kf;
 use ReqTencent\Work\Api\Media;
+use ReqTencent\Work\Api\OAuth;
 use ReqTencent\Work\Contracts\WorkInterface;
 
 class Qywx
@@ -31,5 +32,10 @@ class Qywx
     public static function media(WorkInterface $promise): Media
     {
         return new Media($promise);
+    }
+
+    public static function oauth(WorkInterface $promise): OAuth
+    {
+        return new OAuth($promise);
     }
 }

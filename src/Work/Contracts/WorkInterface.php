@@ -8,6 +8,8 @@ interface WorkInterface
 
     public function corpsecret();
 
+    public function agentid();
+
     public function get($url);
 
     public function post($url, $params);
