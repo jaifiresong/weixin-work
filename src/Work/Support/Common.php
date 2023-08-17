@@ -26,7 +26,6 @@ class Common
 
     /**
      * 获取 token
-     * 公众号和小程序是一样的
      * @param WorkInterface $promise
      * @return mixed
      */
