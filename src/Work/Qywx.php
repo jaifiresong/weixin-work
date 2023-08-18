@@ -5,6 +5,7 @@ namespace ReqTencent\Work;
 
 use ReqTencent\Work\Api\Base;
 use ReqTencent\Work\Api\Cyvi;
+use ReqTencent\Work\Api\ExternalContact;
 use ReqTencent\Work\Api\Kf;
 use ReqTencent\Work\Api\Media;
 use ReqTencent\Work\Api\OAuth;
@@ -37,5 +38,10 @@ class Qywx
     public static function oauth(WorkInterface $promise): OAuth
     {
         return new OAuth($promise);
+    }
+
+    public static function externalcontact(WorkInterface $promise): ExternalContact
+    {
+        return new ExternalContact($promise);
     }
 }
