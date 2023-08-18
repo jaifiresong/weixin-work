@@ -13,12 +13,12 @@ class ExternalContact extends Base
     /**
      * https://developer.work.weixin.qq.com/document/path/92113
      * 获取客户列表
-     * @param $userid string 企业成员的userid
+     * @param $staff_id string 企业成员的userid
      * @return mixed
      */
-    public function user_list($userid)
+    public function user_ids($staff_id)
     {
-        $api = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/list?access_token={$this->token}&userid=$userid";
+        $api = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/list?access_token={$this->token}&userid=$staff_id";
         return $this->promise->get($api);
     }
 
@@ -39,12 +39,12 @@ class ExternalContact extends Base
 
     /**
      * https://developer.work.weixin.qq.com/document/path/92994
-     * 批量获取客户详情
+     * 企业/第三方可通过此接口获取(批量)指定成员添加的客户信息列表
      */
-    public function batch_user_detail(array $userid_list, $cursor = '', $limit = 100)
+    public function customers_by_staffids(array $staffids, $cursor = '', $limit = 100)
     {
         $json = [
-            "userid_list" => $userid_list, //最多支持100个
+            "userid_list" => $staffids, //企业成员的userid列表，字符串类型，最多支持100个
             "cursor" => $cursor,
             "limit" => $limit, //最大值100，默认值50
         ];
