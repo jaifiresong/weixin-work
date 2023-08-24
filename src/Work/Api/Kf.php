@@ -118,11 +118,11 @@ class Kf extends Base
 
     /**
      * https://developer.work.weixin.qq.com/document/path/95122
-     * 发送欢迎语等事件响应消息
+     * 发送欢迎语等事件响应消息，支持的消息类型：文本、菜单
      * 当特定的事件回调消息包含code字段，开发者可以此code为凭证，调用该接口给用户发送相应事件场景下的消息，如客服欢迎语、客服提示语和会话结束语等。
      * 满足通过API下发欢迎语（条件为：用户在过去48小时里未收过欢迎语，且未向客服发过消息），
      * @param $code
-     * @param $content
+     * @param mixed $content
      * @return mixed
      */
     public function send_msg_on_event($code, $content)
@@ -133,6 +133,56 @@ class Kf extends Base
             "text" => [
                 "content" => $content
             ]
+        ];
+        $api = 'https://qyapi.weixin.qq.com/cgi-bin/kf/send_msg_on_event?access_token=' . $this->token;
+        return $this->promise->post($api, json_encode($json));
+    }
+
+    /**
+     * https://developer.work.weixin.qq.com/document/path/95122#%E8%8F%9C%E5%8D%95%E6%B6%88%E6%81%AF
+     */
+    public function send_menu_on_event($code, $menu)
+    {
+        /*
+        [
+            "head_content" => "您对本次服务是否满意呢? ",
+            "list" => [
+                [
+                    "type" => "click",
+                    "click" => [
+                        "id" => "101",
+                        "content" => "满意"
+                    ]
+                ],
+                [
+                    "type" => "click",
+                    "click" => [
+                        "id" => "102",
+                        "content" => "不满意"
+                    ]
+                ],
+                [
+                    "type" => "view",
+                    "view" => [
+                        "url" => "https=>//work.weixin.qq.com",
+                        "content" => "点击跳转到自助查询页面"
+                    ]
+                ],
+                [
+                    "type" => "text",
+                    "text" => [
+                        "content" => "纯文本，支持\n换行",
+                        "no_newline" => 0
+                    ]
+                ]
+            ],
+            "tail_content" => "欢迎再次光临"
+        ]
+        */
+        $json = [
+            "code" => $code,
+            "msgtype" => "msgmenu",
+            "msgmenu" => $menu
         ];
         $api = 'https://qyapi.weixin.qq.com/cgi-bin/kf/send_msg_on_event?access_token=' . $this->token;
         return $this->promise->post($api, json_encode($json));
