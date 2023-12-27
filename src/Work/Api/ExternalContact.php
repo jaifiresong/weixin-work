@@ -51,4 +51,14 @@ class ExternalContact extends Base
         $api = 'https://qyapi.weixin.qq.com/cgi-bin/externalcontact/batch/get_by_user?access_token=' . $this->token;
         return $this->promise->post($api, json_encode($json));
     }
+
+    /**
+     * https://developer.work.weixin.qq.com/document/path/92228
+     * 配置客户联系「联系我」方式
+     * 注意:
+     *      通过API添加的「联系我」不会在管理端进行展示，每个企业可通过API最多配置50万个「联系我」。
+     *      用户需要妥善存储返回的config_id，config_id丢失可能导致用户无法编辑或删除「联系我」。
+     *      临时会话模式不占用「联系我」数量，但每日最多添加10万个，并且仅支持单人。
+     *      临时会话模式的二维码，添加好友完成后该二维码即刻失效。
+     */
 }
