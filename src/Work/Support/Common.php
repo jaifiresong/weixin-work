@@ -25,7 +25,8 @@ class Common
     }
 
     /**
-     * 获取 token
+     * https://developer.work.weixin.qq.com/document/path/91039
+     * 获取 token，每个应用的access_token是彼此独立的，所以每个应用的access_token应该分开来获取，至少保留512字节的存储空间。
      * @param WorkInterface $promise
      * @return mixed
      */
