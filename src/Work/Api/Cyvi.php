@@ -13,6 +13,8 @@ class Cyvi extends Base
     /**
      * https://developer.work.weixin.qq.com/document/path/90196
      * 读取成员
+     * @param $userid
+     * @return mixed
      */
     public function member_info($userid)
     {
@@ -23,6 +25,8 @@ class Cyvi extends Base
     /**
      * https://developer.work.weixin.qq.com/document/path/90200
      * 获取部门成员
+     * @param $department_id
+     * @return mixed
      */
     public function simple_members($department_id)
     {
@@ -33,6 +37,8 @@ class Cyvi extends Base
     /**
      * https://developer.work.weixin.qq.com/document/path/90201
      * 获取部门成员详情
+     * @param $department_id
+     * @return mixed
      */
     public function members($department_id)
     {
@@ -50,7 +56,7 @@ class Cyvi extends Base
     {
         $api = "https://qyapi.weixin.qq.com/cgi-bin/department/list?access_token={$this->token}";
         if (!is_null($id)) {
-            $api .= '&id=' . $id;
+            $api .= "&id=$id";
         }
         return $this->promise->get($api);
     }

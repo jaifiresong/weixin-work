@@ -37,6 +37,6 @@ class TxlConfig implements WorkInterface
 
     public function get_access_token()
     {
-        return Lite::request()->get('http://dykfzf.hy5188.com/agency/token?sign=' . md5('rsd1ga'));
+        return '';
     }
 }
