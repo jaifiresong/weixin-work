@@ -15,7 +15,12 @@ class Customer extends Base
     /**
      * https://developer.work.weixin.qq.com/document/path/92571
      * 获取配置了客户联系功能的成员列表
-    */
+     */
+    public function staff_list()
+    {
+        $api = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_follow_user_list?access_token={$this->token}";
+        return $this->promise->get($api);
+    }
 
     /**
      * https://developer.work.weixin.qq.com/document/path/92113
@@ -63,6 +68,23 @@ class Customer extends Base
             'limit' => $limit, //最大值100，默认值50
         ];
         $api = 'https://qyapi.weixin.qq.com/cgi-bin/externalcontact/batch/get_by_user?access_token=' . $this->token;
+        return $this->promise->post($api, json_encode($json));
+    }
+
+    /**
+     * https://developer.work.weixin.qq.com/document/path/92117#%E8%8E%B7%E5%8F%96%E4%BC%81%E4%B8%9A%E6%A0%87%E7%AD%BE%E5%BA%93
+     * 获取企业标签库
+     * @param null $tag_id
+     * @param null $group_id
+     * @return mixed
+     */
+    public function tag_list($tag_id = null, $group_id = null)
+    {
+        $json = [
+            'tag_id' => $tag_id,
+            'group_id' => $group_id,
+        ];
+        $api = 'https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_corp_tag_list?access_token=' . $this->token;
         return $this->promise->post($api, json_encode($json));
     }
 }

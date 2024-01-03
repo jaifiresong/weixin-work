@@ -3,4 +3,5 @@
 .phpunit.result.cache
 storage
 vendor
+tests/Feeds
 composer.lock

@@ -4,18 +4,19 @@ namespace Test\Feeds;
 
 use LiteView\Curl\Lite;
 use ReqTencent\Work\Contracts\WorkInterface;
+use ReqTencent\Work\Support\Common;
 
 class TxlConfig implements WorkInterface
 {
 
     public function corpid()
     {
-        return 'ww2b1e450e10a598fb';
+        return '';
     }
 
     public function corpsecret()
     {
-        // TODO: Implement corpsecret() method.
+        return '';
     }
 
     public function agentid()
@@ -37,6 +38,8 @@ class TxlConfig implements WorkInterface
 
     public function get_access_token()
     {
-        return '';
+//        $r = Common::getAccessToken(new self());
+//        var_dump($r);
+//        return '1';
     }
 }
