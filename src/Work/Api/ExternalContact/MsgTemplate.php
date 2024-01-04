@@ -44,7 +44,7 @@ class MsgTemplate extends Base
 
     /**
      * https://developer.work.weixin.qq.com/document/path/97610
-     * 提醒成员群发
+     * 提醒成员群发，24小时内每个群发最多触发三次提醒
      * @param $msg_id
      * @return mixed
      */
