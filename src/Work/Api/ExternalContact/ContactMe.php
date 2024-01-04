@@ -28,7 +28,7 @@ class ContactMe extends Base
     public function get_contact_way($optional = [], $type = 2, $scene = 2)
     {
         $json = [
-            'user' => $optional['user'] ?? null,//使用该联系方式的用户userID列表，在type为1时为必填，且只能有一个
+            'user' => $optional['user'] ?? null,//使用该联系方式的用户userID列表，在type为1时为必填，且只能有一个，示例：["zhangsan", "lisi", "wangwu"]
             'party' => $optional['party'] ?? null,//使用该联系方式的部门id列表，只在type为2时有效
             'state' => $optional['state'] ?? null,//企业自定义的state参数，不超过30个字符
             'remark' => $optional['remark'] ?? null,//联系方式的备注信息，用于助记，不超过30个字符
