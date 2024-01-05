@@ -98,13 +98,13 @@ class MsgTemplate extends Base
 
     /**
      * https://developer.work.weixin.qq.com/document/path/93338#%E8%8E%B7%E5%8F%96%E7%BE%A4%E5%8F%91%E6%88%90%E5%91%98%E5%8F%91%E9%80%81%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8
-     * 获取消息的发送对象列表
+     * 获取消息企业员工向客户发送的状态 0未发送 2已发送
      * @param $msg_id
      * @param null $cursor
      * @param int $limit
      * @return mixed
      */
-    public function groupmsg_to_users($msg_id, $cursor = null, $limit = 1000)
+    public function groupmsg_send_status($msg_id, $cursor = null, $limit = 1000)
     {
         $json = [
             'msgid' => $msg_id,
@@ -112,12 +112,13 @@ class MsgTemplate extends Base
             'limit' => $limit,//返回的最大记录数，整型，最大值1000，默认值500，超过最大值时取默认值
         ];
         $api = 'https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_groupmsg_task?access_token=' . $this->token;
+
         return $this->promise->post($api, json_encode($json));
     }
 
     /**
      * https://developer.work.weixin.qq.com/document/path/93338#%E8%8E%B7%E5%8F%96%E4%BC%81%E4%B8%9A%E7%BE%A4%E5%8F%91%E6%88%90%E5%91%98%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C
-     * 获取企业群发成员执行结果
+     * 获消息的发送结果（企业员工向客户发送的结果）0-未发送 1-已发送 2-因客户不是好友导致发送失败 3-因客户已经收到其他群发消息导致发送失败
      * @param $msg_id
      * @param $user_id
      * @param null $cursor
@@ -133,6 +134,7 @@ class MsgTemplate extends Base
             'limit' => $limit,//返回的最大记录数，整型，最大值1000，默认值500，超过最大值时取默认值
         ];
         $api = 'https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_groupmsg_send_result?access_token=' . $this->token;
+
         return $this->promise->post($api, json_encode($json));
     }
 
